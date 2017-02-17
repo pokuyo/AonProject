@@ -8,8 +8,8 @@
 	</select>
 	
 	<insert id="commentQnAInsert" parameterType="commentQnA">
-		insert into commentqna(cq_no, cq_title, cq_content, cq_pwd, q_no)
-			values(commentqna_seq.nextval, #{cq_title}, #{cq_content}, #{cq_pwd}, #{q_no})
+		insert into commentqna(cq_no, cq_title, cq_content, q_no)
+			values(commentqna_seq.nextval, #{cq_title}, #{cq_content}, #{q_no})
 	</insert>
 	
 	<update id="commentQnAUpdate" parameterType="commentQnA">

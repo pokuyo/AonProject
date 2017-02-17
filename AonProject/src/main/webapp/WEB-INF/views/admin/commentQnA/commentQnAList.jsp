@@ -49,10 +49,10 @@
 			$(".comment_insertBtn").click(function(){
 				var commentInsertform = $(this).parents(".commentInsert_form");
 				var insertTitle = $(this).parents(".comment_inner").children(".cq_title");
-				var insertPwd = $(this).parents(".comment_inner").children(".cq_pwd");
+				//var insertPwd = $(this).parents(".comment_inner").children(".cq_pwd");
 				var insertContent = $(this).parents(".comment_inner").children(".cq_content");
 				if(!chkSubmit($(insertTitle),"제목을"))return;
-				else if(!chkSubmit($(insertPwd),"비밀번호를"))return;
+				//else if(!chkSubmit($(insertPwd),"비밀번호를"))return;
 				else if(!chkSubmit($(insertContent),"내용을"))return;
 				else{
 					$.ajax({
@@ -250,9 +250,9 @@
 																<label>제목 : </label>
 																<input type="text" class="cq_title" name="cq_title">
 																<br />
-																<label>비밀번호: </label>
+																<!-- <label>비밀번호: </label>
 																<input type="password" class="cq_pwd" name="cq_pwd">
-																<br />
+																<br /> -->
 																
 																<label>내용 : </label>
 																<textarea class="cq_content" name="cq_content"></textarea>						
