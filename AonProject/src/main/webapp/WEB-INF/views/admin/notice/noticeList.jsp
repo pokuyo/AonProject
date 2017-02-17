@@ -33,6 +33,7 @@
 <form id="detailForm">
  <input type="hidden" id="no_num" name="no_num" value="">
 </form>
+        
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -40,29 +41,12 @@
               <div class="title_left">
                 <h3>공지사항</h3>
               </div>
-
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
             
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2>공지사항관리 <small>게시판관리 > 공지사항관리</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
                     <div class="clearfix"></div>
                   </div>
 
@@ -106,10 +90,10 @@
                                     <td class="a-center ">
                                        <input type="checkbox" class="checkedRecord" name="table_records">
                                     </td>
-                                    <td>${noticeList.no_num }</td>
+                                    <td class="goDetail">${noticeList.no_num }</td>
                                     <td class="goDetail">${noticeList.no_title}</td>
-                                    <td class="date">${noticeList.no_date }</td>
-                                    <td class="name">${noticeList.a_no }</td>
+                                    <td class="goDetail">${noticeList.no_date }</td>
+                                    <td class="goDetail">${noticeList.a_no }</td>
                                   </tr>
                                 </c:forEach>
                               </c:when>

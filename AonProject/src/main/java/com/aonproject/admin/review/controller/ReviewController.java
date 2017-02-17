@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.aonproject.admin.aInfo.vo.AdminVO;
 import com.aonproject.admin.recomment.service.RecommentService;
 import com.aonproject.admin.recomment.vo.RecommentVO;
 import com.aonproject.admin.review.FileUploadUtil;
@@ -44,7 +47,7 @@ public class ReviewController {
 	
 	//리스트 불러오기
 	@RequestMapping(value="/reviewList", method=RequestMethod.GET)
-	public String reviewList(@ModelAttribute ReviewVO rvo,@ModelAttribute ReviewImgVO revo, @ModelAttribute RecommentVO comvo, Model model){
+	public String reviewList(@ModelAttribute ReviewVO rvo,@ModelAttribute ReviewImgVO revo, @ModelAttribute RecommentVO comvo, Model model, Authentication auth){
 		
 		int cnt = 0;
 		cnt = reviewService.cntList();
@@ -61,7 +64,8 @@ public class ReviewController {
 		List<RecommentVO> recommentList = recommentService.recommentList(comvo);
 		model.addAttribute("recommentList",recommentList);
 		
-		
+		UserDetails vo = (AdminVO) auth.getPrincipal();
+		model.addAttribute("vo", vo);
 		return "admin/review/reviewList";
 	}
 	

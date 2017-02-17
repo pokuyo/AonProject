@@ -6,6 +6,7 @@ encoding//src/main/java/com/aonproject/admin/commoncode/dao/CommonCodeDAOImpl.ja
 encoding//src/main/java/com/aonproject/admin/commoncode/service/CommonCodeService.java=UTF-8
 encoding//src/main/java/com/aonproject/admin/commoncode/service/CommonCodeServiceImpl.java=UTF-8
 encoding//src/main/java/com/aonproject/admin/mInfo/controller/mInfoController.java=UTF-8
+encoding//src/main/java/com/aonproject/admin/notice/controller/NoticeController.java=UTF-8
 encoding//src/main/java/com/aonproject/admin/product/controller/ProductController.java=UTF-8
 encoding//src/main/java/com/aonproject/client/notice/controller/ClientNoticeController.java=UTF-8
 encoding//src/main/java/com/aonproject/client/order/controller/OrderController.java=ISO-8859-1

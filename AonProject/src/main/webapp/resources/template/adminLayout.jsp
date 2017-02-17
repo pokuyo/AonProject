@@ -74,8 +74,6 @@
     <!-- DateJS -->
     
     <!-- JQVMap -->
-    
-    
     <script src="/resources/bootstrap/js/jquery.vmap.sampledata.js"></script>
     <!-- bootstrap-daterangepicker -->
     <script src="/resources/bootstrap/js/moment.min.js"></script>

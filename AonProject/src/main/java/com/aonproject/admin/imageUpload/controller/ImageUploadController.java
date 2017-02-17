@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.aonproject.admin.aInfo.vo.AdminVO;
 import com.aonproject.admin.imageUpload.service.ImageUploadService;
 import com.aonproject.admin.imageUpload.vo.ImageUploadVO;
 import com.aonproject.common.util.upload.FileUploadUtil;
@@ -29,12 +32,15 @@ public class ImageUploadController {
 	
 	/*image list*/
 	@RequestMapping(value = "/imageUploadList", method=RequestMethod.GET)
-	public String imageUploadList(@ModelAttribute ImageUploadVO iuvo, Model model){
+	public String imageUploadList(@ModelAttribute ImageUploadVO iuvo, Model model, Authentication auth){
 		logger.info("imageUploadList calling");
 		
 		List<ImageUploadVO> imageuploadList = imageUploadService.imageUploadList(iuvo);
 		
 		model.addAttribute("imageuploadList", imageuploadList);
+		
+		UserDetails vo = (AdminVO) auth.getPrincipal();
+		model.addAttribute("vo", vo);
 		
 		return "admin/imageUpload/upload";
 	}

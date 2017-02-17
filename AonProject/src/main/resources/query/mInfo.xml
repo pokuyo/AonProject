@@ -7,7 +7,9 @@
 		select member.m_no, regexp_replace(m_id, '.', '*', 4) as m_id, m_pwd, regexp_replace(m_name, '.', '*', 3) as m_name, m_gender, 
 		regexp_replace(m_tel, '(\d{3})\-(\d{3,4})\-(\d{4})','\1-****-\3') as m_tel, regexp_replace(m_email, '.', '*', 4) as m_email, m_leave, 
 		regexp_replace(m_addr, '.', '*', 15) as m_addr, to_char(m_date, 'YYYY-MM-DD HH24:MI:SS') as m_date
-        from member inner join member_addr on member.m_no = member_addr.m_no
+        from member inner join (select * from (select min(m_addr) as maddr from member_addr group by(m_addr)) g1 inner join (select * from member_addr) on maddr = m_addr) member_addr 
+        on maddr = member_addr.m_addr 
+        where maddr = member_addr.m_addr and rownum=1
 	</select>
 	
 	<!-- select member.m_no, m_id, m_pwd, m_name, m_gender, m_tel, m_email, m_leave, m_addr, to_char(m_date, 'YYYY-MM-DD HH24:MI:SS') as m_date
@@ -17,8 +19,9 @@
 		select member.m_no, regexp_replace(m_id, '.', '*', 4) as m_id, m_pwd, regexp_replace(m_name, '.', '*', 3) as m_name, m_gender, 
 		regexp_replace(m_tel, '(\d{3})\-(\d{3,4})\-(\d{4})','\1-****-\3') as m_tel, regexp_replace(m_email, '.', '*', 4) as m_email, m_leave, 
 		regexp_replace(m_addr, '.', '*', 15) as m_addr, to_char(m_date, 'YYYY-MM-DD HH24:MI:SS') as m_date
-        from member inner join member_addr on member.m_no = member_addr.m_no
-        where member.m_no = #{m_no}
+        from member inner join (select * from (select min(m_addr) as maddr from member_addr group by(m_addr)) g1 inner join (select * from member_addr) on maddr = m_addr) member_addr 
+        on maddr = member_addr.m_addr 
+        where maddr = member_addr.m_addr and rownum=1
 	</select>
 	
 	<!-- mInfo delete

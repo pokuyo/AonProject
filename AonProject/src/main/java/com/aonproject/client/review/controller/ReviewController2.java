@@ -252,7 +252,7 @@ public class ReviewController2 {
 		String resultData =  "success";
 		
 		return resultData;
-	}
+	} 
 	
 	@ResponseBody
 	@RequestMapping(value="/reviewOrderConfirm", method=RequestMethod.POST)
@@ -261,7 +261,7 @@ public class ReviewController2 {
 		MemberVO mvo = (MemberVO) auth.getPrincipal();
 		rvo.setM_no(mvo.getM_no());
 		String resultS = "";
-		String confirm = "";
+		String confirm = ""; 
 		confirm = reviewService.reviewOrderConfirm(rvo); //상품 주문을 했는지 안했는지 검사
 		int reCon = 0;
 		reCon = reviewService.reviewConfirm(rvo);//상품주문을 했지만 리뷰를 썻는지 안썻는지 검사

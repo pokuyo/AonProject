@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
+	<link rel="stylesheet" type="text/css" href="/resources/bootstrap/css/custom.min.css">
 	<link rel="stylesheet" type="text/css" href="/resources/include/css/admincategory.css">
-	<link rel="stylesheet" type="text/css" href="/resources/include/css/reset.css">
+	
 	<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="/resources/include/js/board.js"></script>
 	<script type="text/javascript" src="/resources/include/js/chkFile.js"></script>
@@ -13,12 +13,6 @@
 		$("#cainsertBtn").click(function(){
 			var name = $("#ca_name").val();
 			var caselect = $("#caselect option:selected").text();
-			/* for(i=1; i<caselect.length; i++){
-				if(caselect.eq(i).text()=="caoption2"){
-					$("#caselect option:eq("+i+")").prop("selected", true);
-					break;
-				}
-			} */
 			var ca_name = name+" "+caselect;
 			if(!chkSubmit($("#ca_name"),"연도를 입력해주세요(ex:2017)"))return;
 			else{
@@ -46,7 +40,15 @@
 			}
 		});
 		
+		//숫자만 입력받기 근데 한글은 적용이 안된다.
+		$('#ca_name').keypress(function (event) { 
+			if (event.which && (event.which <= 47 || event.which >= 58) && event.which != 8) { 
+				event.preventDefault(); 
+				} 
+			});
+		
 		$(".ca_name2").hide();
+		
 		//수정
 		$(".caUpdateBtn").click(function(){
 				$(this).parents("td").children(".ca_name1").hide();
@@ -114,6 +116,7 @@
 			});
 		});
 	});
+
 </script>
 	<div class="category-Insert">
 		<div class="ca_top"><h1>카테고리 입력</h1></div>
@@ -127,7 +130,7 @@
 					<tr>
 					<td>카테고리 이름 : </td>
 					<td>
-						<input type="text" id="ca_name" name="ca_name" size="10" maxlength="4" placeholder="ex)2017">
+						<input type="text" id="ca_name" name="ca_name" size="8" maxlength="4" placeholder="ex)2017" />
 						<select id="caselect" name="caselect">
 							<option value="caoption1">S/S</option>
 							<option value="caoption2">F/W</option>
@@ -160,7 +163,7 @@
 									<input type="hidden" class="ca_no" value="${category.ca_no }">
 									<div class="ca_name1">${category.ca_name}</div>
 									<div class="ca_name2">
-										<input type="text" id="ca_name" name="ca_name" size="10" maxlength="4" placeholder="ex)2017">
+										<input type="number" id="ca_name" name="ca_name" size="8" maxlength="4" placeholder="ex)2017">
 										<select id="caselect" name="caselect">
 											<option value="caoption1">S/S</option>
 											<option value="caoption2">F/W</option>
@@ -185,22 +188,4 @@
 		</table>
 	</div>
 	
-				<%-- <c:choose>
-					<c:when test="${not empty commonCodeList}">
-						<c:forEach var="commonCodeList" items="${commonCodeList}">
-							<tr data-no="${commonCodeList.cc_no}" class="commonCodeList">
-								<td>${commonCodeList.cc_no}</td>
-								<td>
-									${commonCodeList.cc_name}
-									
-								</td>
-							</tr>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<tr>
-							<td>등록된 상품이 없습니다</td>
-						</tr>
-					</c:otherwise>
-				</c:choose> --%>
-	
+				

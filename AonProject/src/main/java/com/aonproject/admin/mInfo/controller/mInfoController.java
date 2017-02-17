@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -93,11 +94,12 @@ public class mInfoController {
 	
 	// member detail
 	@RequestMapping(value="/mDetailForm", method=RequestMethod.GET)
-	public String mDetailForm(@ModelAttribute mInfoVO mvo, Model model){
+	public String mDetailForm(@ModelAttribute mInfoVO mvo, Model model, Authentication auth){
 		logger.info("mDetailForm calling success");
 		logger.info("m_no = " + mvo.getM_no());
 		
 		mInfoVO mDetail = mInfoService.mDetailForm(mvo);
+		UserDetails vo = (AdminVO) auth.getPrincipal();
 		
 			String addrs = mDetail.getM_addr();
 			
@@ -114,6 +116,7 @@ public class mInfoController {
 			mDetail.setM_addr(remakeAddr);
 		
 		    model.addAttribute("mDetail", mDetail);
+		    model.addAttribute("vo", vo);
 		    String url = "admin/mInfo/mDetailForm";
 		
 		    return url;

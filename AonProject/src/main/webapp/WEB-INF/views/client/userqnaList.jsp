@@ -204,7 +204,7 @@
 							<th><div class="tb-left">비밀번호 : </div></th>
 							<td>
 								<div class="tb-left frm-w">
-									<input type="password" name="q_pwd" id="q_pwd" size="20" maxlength="30">
+									<input type="password" name="q_pwd" id="q_pwd" size="20" maxlength="20">
 									<font color="red">자동 잠금 기능</font>
 								</div>
 							</td>
@@ -213,7 +213,7 @@
 							<th><div class="tb-left">내용 : </div></th>
 							<td>
 								<div class="tb-left frm-w">
-									<textarea rows="8" cols="70" id="q_content" name="q_content" maxlength="4000"></textarea>
+									<textarea rows="8" cols="70" id="q_content" name="q_content" maxlength="3000" style="resize: none;"></textarea>
 								</div>
 								
 							</td>
@@ -305,7 +305,7 @@
 											<div class="qnapwdChk">
 												<input type="hidden" name="q_no" class="q_no" value="${qna.q_no }">
 												<label for="q_pwd" class="l_pwd">비밀번호 : </label>
-												<input type="password" name="q_pwd" class="q_pwd">
+												<input type="password" name="q_pwd" class="q_pwd" maxlength="20">
 												
 												<input type="button" class="qna_pwdBtn" value="확인">
 												<span class="msg"></span>

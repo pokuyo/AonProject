@@ -63,7 +63,7 @@
 
 	
 	<!-- 카테고리 리스트 페이지 -->
-	<definition name="admin/category/main" extends="adminMain">
+	<definition name="admin/category/*" extends="adminMain">
 		<put-attribute name="main" value="/WEB-INF/views/admin/category/main.jsp"></put-attribute>
 	</definition>
 	

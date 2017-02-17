@@ -3,11 +3,15 @@ package com.aonproject.admin.commoncode.controller;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.aonproject.admin.aInfo.vo.AdminVO;
 import com.aonproject.admin.category.controller.CategoryController;
 import com.aonproject.admin.commoncode.service.CommonCodeService;
 import com.aonproject.admin.commoncode.vo.CommonCodeVO;
@@ -22,8 +26,11 @@ public class CommonCodeController {
 	
 	//공통 코드 리스트 구현
 	@RequestMapping(value = "/commonCodeList", method=RequestMethod.GET)
-	public String CommonCodeList(@ModelAttribute CommonCodeVO cvo, Model model){
+	public String CommonCodeList(@ModelAttribute CommonCodeVO cvo, Model model, Authentication auth){
 		logger.info("CommonCodeList 호출 성공!");
+		
+		UserDetails vo = (AdminVO) auth.getPrincipal();
+		model.addAttribute("vo", vo);
 			
 		List<CommonCodeVO> commonCodeList = commonCodeService.CommonCodeList(cvo);
 			
@@ -36,42 +43,54 @@ public class CommonCodeController {
 	
 	// 공통 코드 size 리스트 구현
 	@RequestMapping(value = "/sCommonCodeList", method=RequestMethod.GET)
-	public String sCommonCodeList(@ModelAttribute CommonCodeVO cvo, Model model){
+	public String sCommonCodeList(@ModelAttribute CommonCodeVO cvo, Authentication auth, Model model){
 		logger.info("sCommonCodeList 호출 성공!");
 		
-		List<CommonCodeVO> sCommonCodeList = commonCodeService.sCommonCodeList(cvo);
+		UserDetails vo = (AdminVO) auth.getPrincipal();
+		model.addAttribute("vo", vo);
 		
+		List<CommonCodeVO> sCommonCodeList = commonCodeService.sCommonCodeList(cvo);
 		if(sCommonCodeList != null) {
 			model.addAttribute("sCommonCodeList", sCommonCodeList);
 		}
+		model.addAttribute("vo", vo);
 		
 		return "admin/commonCode/sDetailForm";
 	}
 	
 	// 공통 코드 color 리스트 구현
 		@RequestMapping(value = "/cCommonCodeList", method=RequestMethod.GET)
-		public String cCommonCodeList(@ModelAttribute CommonCodeVO cvo, Model model){
+
+		public String cCommonCodeList(@ModelAttribute CommonCodeVO cvo, Authentication auth, Model model){
 			logger.info("cCommonCodeList 호출 성공!");
+			
+			UserDetails vo = (AdminVO) auth.getPrincipal();
+			model.addAttribute("vo", vo);
 			
 			List<CommonCodeVO> cCommonCodeList = commonCodeService.cCommonCodeList(cvo);
 			
 			if(cCommonCodeList != null) {
 				model.addAttribute("cCommonCodeList", cCommonCodeList);
 			}
+			model.addAttribute("vo", vo);
 			
 			return "admin/commonCode/cDetailForm";
 		}
 		
 		// 공통 코드 type 리스트 구현
 		@RequestMapping(value = "/tCommonCodeList", method=RequestMethod.GET)
-		public String tCommonCodeList(@ModelAttribute CommonCodeVO cvo, Model model){
+		public String tCommonCodeList(@ModelAttribute CommonCodeVO cvo, Model model, Authentication auth){
 			logger.info("tCommonCodeList 호출 성공!");
+			
+			UserDetails vo = (AdminVO) auth.getPrincipal();
+			model.addAttribute("vo", vo);
 			
 			List<CommonCodeVO> tCommonCodeList = commonCodeService.tCommonCodeList(cvo);
 			
 			if(tCommonCodeList != null) {
 				model.addAttribute("tCommonCodeList", tCommonCodeList);
 			}
+			model.addAttribute("vo", vo);
 			
 			return "admin/commonCode/tDetailForm";
 		}

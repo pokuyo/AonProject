@@ -3,27 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 
-<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/include/js/common.js"></script>
-<script type="text/javascript">
-
-  $(function() {
-	  $("#sizeInsert").click(function() {
-		  if(!chkSubmit($("#cc_name"),"코드내용을"))return;
-		  else if(!chkSubmit($("#cc_group"),"코드구분을"))return;
-		  else if(!chkSubmit($("#cc_desc"),"코드설명을"))return;
-		  else {
-			  $("#sDetailForm").attr({
-				  "method":"post",
-			      "action":"/admin/sCommonCodeInsert"
-		      });
-		      $("#sDetailForm").submit();
-		  }
-	  });
-	  
-  });
-</script>
-
 <form id="sDetailForm">
 		<table>
 			<tbody>
@@ -52,7 +31,7 @@
 		
 		<h2>사이즈 등록</h2>
 		<div class="btnContainer"><br />
-		코드내용 : <input type="text" required="required" id="cc_name" name="cc_name" /><br />
+		코드내용 : <input type="text" placeholder="예)S" required="required" id="cc_name" name="cc_name" /><br />
 		코드구분 : <input type="text" required="required" id="cc_group" name="cc_group" /><br />
 		코드설명 : <input type="text" required="required" id="cc_desc" name="cc_desc" /><br />
 		</div>

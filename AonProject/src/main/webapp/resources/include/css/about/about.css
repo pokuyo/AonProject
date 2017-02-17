@@ -2,6 +2,7 @@
 
 	.about_body{
 		height: 800px;
+		padding-left: 150px;
 		}
 	.backImg{
 		width: 1200px;
@@ -27,18 +28,17 @@
 		}
 	
 	.con_bar2{
-		padding:20px 0 0 1130px;
-		float: right;
+		padding: 20px 0 0 930px;
 		z-index: -3; 
 		position: absolute;
 		}
 	.Name_slogan{
-		padding:48px 500px 0 0;
+		padding:48px 550px 0 0;
 		float: right;
 		font-weight: bold;
 		}
 	.content_slogan{
-		padding:13px 70px 0 0;
+		padding:23px 550px 0 0;
 		font-size: 13px;
 		float: right;
 		}

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 	<link rel = "stylesheet" href = "/resources/include/fontello/css/fontello.css">
-	<link rel="stylesheet" type="text/css" href="/resources/include/css/qna/reset.css">
+	<link rel="stylesheet" type="text/css" href="/resources/include/css/qna/reset.css">	
 	<link rel="stylesheet" type="text/css" href="/resources/include/css/qna/qna.css">
 	<script type="text/javascript" src="/resources/include/js/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="/resources/include/js/board.js"></script>

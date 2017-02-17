@@ -10,7 +10,7 @@
 			  "method":"post",
 			  "action":"/admin/upload/ImageUploadInsert"
 		  });
-		  $("#detailForm").submit();
+		  $("#detailForm1").submit();
 	  });
 	  
 	  $("#insertBtn2").click(function() {
@@ -18,7 +18,7 @@
 			  "method":"post",
 			  "action":"/admin/upload/ImageUploadInsert"
 		  });
-		  $("#detailForm").submit();
+		  $("#detailForm2").submit();
 	  });
 	  
 	  $("#insertBtn3").click(function() {
@@ -26,7 +26,7 @@
 			  "method":"post",
 			  "action":"/admin/upload/ImageUploadInsert"
 		  });
-		  $("#detailForm").submit();
+		  $("#detailForm3").submit();
 	  });
 	  
 	  $("#insertBtn4").click(function() {
@@ -34,7 +34,7 @@
 			  "method":"post",
 			  "action":"/admin/upload/ImageUploadInsert"
 		  });
-		  $("#detailForm").submit();
+		  $("#detailForm4").submit();
 	  });
 	  
 	  $("#insertBtn5").click(function() {
@@ -42,14 +42,13 @@
 			  "method":"post",
 			  "action":"/admin/upload/ImageUploadInsert"
 		  });
-		  $("#detailForm").submit();
+		  $("#detailForm5").submit();
 	  });
 	  
   });
 </script>
 
 <!-- page content -->
-       <form id="detailForm" enctype="multipart/form-data">
         <input type="hidden" name="img_id" value="${imageUploadList.mp_no}">
         
         <div class="right_col" role="main">
@@ -74,7 +73,7 @@
 
                     <!-- <form class="form-horizontal form-label-left"> -->
                     <div class="btnContainer">
-	                
+	                <form id="detailForm1" enctype="multipart/form-data">
                       <div class="form-group">
                         <label class="col-sm-2 control-label">이미지 1</label>
                         <div class="col-sm-9">
@@ -88,7 +87,8 @@
                         </div>
                         <img src="#">
                       </div>
-                      
+                    </form>
+                    <form id="detailForm2" enctype="multipart/form-data">
                       <div class="form-group">
                         <label class="col-sm-2 control-label">이미지 2</label>
                         <div class="col-sm-9">
@@ -102,7 +102,8 @@
                         </div>
                         <img src="#">
                       </div>
-                      
+                    </form>
+                    <form id="detailForm3" enctype="multipart/form-data">
                       <div class="form-group">
                         <label class="col-sm-2 control-label">이미지 3</label>
                         <div class="col-sm-9">
@@ -116,7 +117,8 @@
                         </div>
                         <img src="#">
                       </div>
-                      
+                    </form>
+                    <form id="detailForm4" enctype="multipart/form-data">
                       <div class="form-group">
                         <label class="col-sm-2 control-label">이미지 4</label>
                         <div class="col-sm-9">
@@ -130,7 +132,8 @@
                         </div>
                         <img src="#">
                       </div>
-                      
+                    </form>
+                    <form id="detailForm5" enctype="multipart/form-data">
                       <div class="form-group">
                         <label class="col-sm-2 control-label">이미지 5</label>
                         <div class="col-sm-9">
@@ -144,6 +147,7 @@
                         </div>
                         <img src="#">
                       </div>
+                    </form>
                     </div>
                     <!-- </form> -->
                   </div>
@@ -152,5 +156,4 @@
             </div>
           </div>
         </div>
-      </form>
         <!-- /page content -->

@@ -50,7 +50,6 @@
 							$(".review_write").show();
 							$(".find_review").find("td").hide();
 							rollBack();
-							alert("글을 쓰실 수 있습니다.");
 						}else if(result == "fail"){
 							alert("상품주문 후에 작성하실 수 있습니다.");
 						}else if(result = "fails"){
@@ -272,14 +271,14 @@
 								<div class="tb-left">제목 : </div>
 							</th>
 							<td>
-								<div class="tb-left frm-w"><input type="text" name="re_title" id="re_title" size="20" maxlength="30"></div>
+								<div class="tb-left frm-w"><input type="text" name="re_title" id="re_title" size="40" maxlength="20"></div>
 							</td>
 						</tr>
 						<tr>
 							<th><div class="tb-left">비밀번호 : </div></th>
 							<td>
 								<div class="tb-left frm-w">
-									<input type="password" name="re_pwd" id="re_pwd" size="20" maxlength="30">
+									<input type="password" name="re_pwd" id="re_pwd" size="20" maxlength="20">
 									<span style="color:red;">비밀번호는 자동 저장됩니다.</span>
 								</div>
 							</td>
@@ -288,9 +287,8 @@
 							<th><div class="tb-left">내용 : </div></th>
 							<td>
 								<div class="tb-left frm-w">
-									<textarea rows="8" cols="70" id="re_content" name="re_content" maxlength="4000"></textarea>
+									<textarea rows="8" cols="70" id="re_content" name="re_content" maxlength="3000" style="resize: none;"></textarea>
 								</div>
-								
 							</td>
 						</tr>
 						<tr>
@@ -372,7 +370,7 @@
 										<div class="update_content">
 											<form id="update_form">
 												<input type="hidden" name="re_no" id="re_no" value="${review.re_no }">
-												<textarea rows="8" cols="70" id="re_content" name="re_content" maxlength="4000">${review.re_content }</textarea>
+												<textarea rows="8" cols="70" id="re_content" name="re_content" maxlength="3000">${review.re_content }</textarea>
 												<div class="mo_file"> 
 													<input type="file" id="files" name="files" style="padding-top:8px;" multiple><br />
 													<div class="imgView" style="padding-top:14px;">
@@ -401,7 +399,7 @@
 										</sec:authorize>
 										<sec:authorize ifNotGranted="user">
 											<div class="warning_modify">
-												<span>회원로그인 후 수정할 수 있습니다.</span>
+												<span style="padding:0 0 0 10px;">회원로그인 후 수정할 수 있습니다.</span>
 											</div>
 										</sec:authorize>
 										

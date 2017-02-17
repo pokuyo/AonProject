@@ -41,13 +41,13 @@
     				<span class="slogan_span" style="font-size:25px;">
     						B R A N D　 S L O G A N
     				</span>
-    				<div class="content_slogan">
-	    				<span class="slogan_content">
-	    						WHATEVER YOU WANT  <br />
-								AON에서는 당신이 원하는 무엇이든  <br />
-								당신의 곁으로 다가가려 합니다.
-	    				</span>
-	    			</div>
+    			</div>
+   				<div class="content_slogan">
+    				<span class="slogan_content">
+    						WHATEVER YOU WANT  <br />
+							AON에서는 당신이 원하는 무엇이든  <br />
+							당신의 곁으로 다가가려 합니다.
+    				</span>
     			</div>
     		</div>
     		

@@ -37,7 +37,7 @@ public class QnauserController {
 	
 	//리스트 불러오기
 	@RequestMapping(value="/qnauserList", method=RequestMethod.GET)
-	public String qnaList(@ModelAttribute QnaVO qvo, @ModelAttribute CommentQnAVO cqvo,Model model){
+	public String qnaList(@ModelAttribute QnaVO qvo, @ModelAttribute CommentQnAVO cqvo,Model model, Authentication auth ){
 		
 		int cnt = 0;
 		qvo.setCountList(5);
