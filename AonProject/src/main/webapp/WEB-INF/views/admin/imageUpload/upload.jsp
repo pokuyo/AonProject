@@ -8,7 +8,7 @@
 	  $("#insertBtn1").click(function() {
 		  $("#detailForm").attr({
 			  "method":"post",
-			  "action":"/admin/upload/ImageUploadInsert"
+			  "action":"/admin/upload/imageUploadInsert"
 		  });
 		  $("#detailForm1").submit();
 	  });
@@ -16,7 +16,7 @@
 	  $("#insertBtn2").click(function() {
 		  $("#detailForm").attr({
 			  "method":"post",
-			  "action":"/admin/upload/ImageUploadInsert"
+			  "action":"/admin/upload/imageUploadInsert"
 		  });
 		  $("#detailForm2").submit();
 	  });
@@ -24,7 +24,7 @@
 	  $("#insertBtn3").click(function() {
 		  $("#detailForm").attr({
 			  "method":"post",
-			  "action":"/admin/upload/ImageUploadInsert"
+			  "action":"/admin/upload/imageUploadInsert"
 		  });
 		  $("#detailForm3").submit();
 	  });
@@ -32,7 +32,7 @@
 	  $("#insertBtn4").click(function() {
 		  $("#detailForm").attr({
 			  "method":"post",
-			  "action":"/admin/upload/ImageUploadInsert"
+			  "action":"/admin/upload/imageUploadInsert"
 		  });
 		  $("#detailForm4").submit();
 	  });
@@ -40,7 +40,7 @@
 	  $("#insertBtn5").click(function() {
 		  $("#detailForm").attr({
 			  "method":"post",
-			  "action":"/admin/upload/ImageUploadInsert"
+			  "action":"/admin/upload/imageUploadInsert"
 		  });
 		  $("#detailForm5").submit();
 	  });
@@ -85,7 +85,6 @@
                             </span>
                           </div>        
                         </div>
-                        <img src="#">
                       </div>
                     </form>
                     <form id="detailForm2" enctype="multipart/form-data">
@@ -100,7 +99,6 @@
                             </span>
                           </div>        
                         </div>
-                        <img src="#">
                       </div>
                     </form>
                     <form id="detailForm3" enctype="multipart/form-data">
@@ -115,7 +113,6 @@
                             </span>
                           </div>        
                         </div>
-                        <img src="#">
                       </div>
                     </form>
                     <form id="detailForm4" enctype="multipart/form-data">
@@ -130,7 +127,6 @@
                             </span>
                           </div>        
                         </div>
-                        <img src="#">
                       </div>
                     </form>
                     <form id="detailForm5" enctype="multipart/form-data">
@@ -145,7 +141,6 @@
                             </span>
                           </div>        
                         </div>
-                        <img src="#">
                       </div>
                     </form>
                     </div>

@@ -46,7 +46,7 @@ public class ImageUploadController {
 	}
 	
 	/*image upload*/
-	@RequestMapping(value = "/upload/ImageUploadInsert")
+	@RequestMapping(value = "/upload/imageUploadInsert")
 	public String imageUploadInsert(@ModelAttribute ImageUploadVO iuvo, HttpServletRequest request) throws IllegalStateException, IOException {
 
 		logger.info("imageUploadInsert calling");
