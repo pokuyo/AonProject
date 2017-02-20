@@ -168,7 +168,7 @@ order by o_no desc)) f1 inner join (select ma_no, t1.m_no, m_id, m_name, o_num, 
 	<select id="orderRefundList" resultType="order" parameterType="order">
 		select * from
 (
-select rownum as rnum ,m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no from
+select rownum as rnum ,replace(m_addr, '#!@@!#',' ') m_addr ,m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no from
 (select ttt.*, m_addr from
 (
 select * from(
