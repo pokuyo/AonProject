@@ -234,7 +234,7 @@
 				</colgroup>
 				<tr class = "lastLine">
 					<th>주소</th>
-					<td id = "ggg2">(null)</td>
+					<td id = "ggg2">${orderList[0].m_addr }</td>
 				</tr>
 			</table>	
 		</div>				

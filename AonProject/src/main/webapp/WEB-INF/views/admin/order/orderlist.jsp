@@ -86,7 +86,7 @@
 						<td class = "lightBorder">${orderList[status.index].m_no }</td>
 						<td class = "o_no" data-num = "${orderList[status.index].o_no }" >${orderList[status.index].m_id }</td>
 						<td>${orderList[status.index].m_name }</td>
-						<td><%-- ${orderList[status.index].m_addr } --%></td>
+						<td>${orderList[status.index].m_addr }</td>
 						<td>${orderList[status.index].p_no }</td>
 						<td>${orderList[status.index].o_cnt }</td>
 						<td>${orderList[status.index].o_price }</td>
@@ -191,7 +191,7 @@
 		for(var i = 0; i < loopGo; i++){
 			var test = $(".hahaha").eq(i).find("td").eq(0).attr("class");
 			var test2 = $("."+test+"").length;
-			if(test2 != 1){
+			if(test2 > 1){
 				$(".hahaha").eq(i).find("td").eq(0).attr("rowspan", test2);
 				$("."+test+"").not($("."+test+"").eq(0)).remove();
 				i = i + test2 - 1;
