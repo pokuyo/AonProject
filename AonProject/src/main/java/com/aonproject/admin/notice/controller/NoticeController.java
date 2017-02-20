@@ -104,7 +104,7 @@ public class NoticeController {
 		
 		
 		logger.info("admin= "+admin);
-
+			
 		
 		model.addAttribute("adminInfo", admin);
 		model.addAttribute("detail", detail);

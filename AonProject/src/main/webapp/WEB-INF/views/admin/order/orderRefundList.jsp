@@ -62,7 +62,7 @@
 }
 </style>
 <div class = "main">
-	<h2 id = "pTitle">미결제 목록</h2>
+	<h2 id = "pTitle">환불요청 목록</h2>
 	<form id = "searchForm">
 		<div id = "searchLine">
 			<h4>검색하기</h4>
@@ -117,7 +117,7 @@
 						<td class = "lightBorder">${orderList[status.index].m_no }</td>
 						<td class = "o_no" data-num = "${orderList[status.index].o_no }" >${orderList[status.index].m_id }</td>
 						<td>${orderList[status.index].m_name }</td>
-						<td><%-- ${orderList[status.index].m_addr } --%></td>
+						<td>${orderList[status.index].m_addr }</td>
 						<td>${orderList[status.index].p_no }</td>
 						<td>${orderList[status.index].o_cnt }</td>
 						<td>${orderList[status.index].o_price }</td>

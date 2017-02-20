@@ -117,7 +117,7 @@
 						<td class = "lightBorder">${orderList[status.index].m_no }</td>
 						<td class = "o_no" data-num = "${orderList[status.index].o_no }" >${orderList[status.index].m_id }</td>
 						<td>${orderList[status.index].m_name }</td>
-						<td><%-- ${orderList[status.index].m_addr } --%></td>
+						<td>${orderList[status.index].m_addr }</td>
 						<td>${orderList[status.index].p_no }</td>
 						<td>${orderList[status.index].o_cnt }</td>
 						<td>${orderList[status.index].o_price }</td>

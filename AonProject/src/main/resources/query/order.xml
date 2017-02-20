@@ -56,15 +56,15 @@ inner join common_code on color_code = cc_no) inner join common_code on p_type =
 	
 	<!-- 마이페이지 주문내역 상세 -->
 	<select id="orderview" parameterType="order" resultType="order">
-	select m_no, o_num,o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no, pi_file, pi_route, p_name, size_code, color_code, p_color, p_size, cc_name p_type from
-(select m_no, o_num,o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no, pi_file, pi_route, p_name, p_type, size_code, color_code, color as p_color, cc_name p_size from
-(select m_no, o_num,o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no, pi_file, pi_route, p_name, p_type, size_code, color_code, cc_name color from
-(select m_no, o_num,o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p1.p_no, pi_file, pi_route, p_name, p_type, size_code, color_code from
-(select m_no, o_num,o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no, pi_file, pi_route from (select ppno, pno, pi_route, pi_file from (select min(pno) ppno, p_no pno from (select pno, p_no from (select DISTINCT min(pi_no) pno, p_no from product_img group by(p_no))) group by (p_no)) inner join product_img on pi_no = ppno) end1
+	select ttt.*, replace(m_addr, '#!@@!#', ' ') m_addr from (select ma_no, m_no, o_num,o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no, pi_file, pi_route, p_name, size_code, color_code, p_color, p_size, cc_name p_type from
+(select ma_no, m_no, o_num,o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no, pi_file, pi_route, p_name, p_type, size_code, color_code, color as p_color, cc_name p_size from
+(select ma_no, m_no, o_num,o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no, pi_file, pi_route, p_name, p_type, size_code, color_code, cc_name color from
+(select ma_no, m_no, o_num,o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p1.p_no, pi_file, pi_route, p_name, p_type, size_code, color_code from
+(select ma_no, m_no, o_num,o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no, pi_file, pi_route from (select ppno, pno, pi_route, pi_file from (select min(pno) ppno, p_no pno from (select pno, p_no from (select DISTINCT min(pi_no) pno, p_no from product_img group by(p_no))) group by (p_no)) inner join product_img on pi_no = ppno) end1
 inner join
-(select m_no, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from product_order where m_no = #{m_no} and o_num = #{o_num})
+(select ma_no, m_no, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from product_order where m_no = #{m_no} and o_num = #{o_num})
 on pno = p_no order by o_no desc) p1 inner join (select p_no, p_name, p_type, size_code, color_code from product) p2 on p1.p_no = p2.p_no) p4 inner join common_code on size_code = cc_no) p5
-inner join common_code on color_code = cc_no) inner join common_code on p_type = cc_no order by o_num desc, o_no desc
+inner join common_code on color_code = cc_no) inner join common_code on p_type = cc_no) ttt inner join member_addr ttt2 on ttt.ma_no = ttt2.ma_no order by o_num desc, o_no desc
 	</select>
 	
 	<!-- 마이페이지 환불요청 신청 -->
@@ -76,9 +76,10 @@ inner join common_code on color_code = cc_no) inner join common_code on p_type =
 	<select id="adminOrderList" resultType="order" parameterType="order">
 select * from
 (
-select rownum as rnum ,m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no from
+select rownum as rnum, ma_no, m_addr ,m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no from
 (
-select t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order) t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no) 
+select ttt.*, replace(m_addr, '#!@@!#', ' ') m_addr from (
+select ma_no ,t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order) t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no) 
 <where>
 	<if test='startDate != "" and endDate == ""'>
 		<![CDATA[o_date >= #{startDate}]]>
@@ -90,13 +91,15 @@ select t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to
 		<![CDATA[o_date >= #{startDate} and o_date < to_date(#{endDate}, 'YYYY-MM-DD') + 1]]>
 	</if>
 </where>
-order by o_no desc) 
+) ttt inner join member_addr ttt2 on ttt.ma_no = ttt2.ma_no order by o_num desc) 
 where rownum <![CDATA[<=]]> #{end_data}) where rnum <![CDATA[>=]]> #{start_data}
 	</select>
 	
 	<!-- 관리자 주문내역 페이지 cnt -->
 	<select id="adminOrderListCnt" resultType="java.lang.Integer" parameterType="order">
-	select nvl(count(*), 0) from (select t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order) t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no) 
+	select nvl(count(*), 0) from 
+	(select ttt.*, m_addr from
+	(select ma_no ,t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order) t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no) 
 <where>
 	<if test='startDate != "" and endDate == ""'>
 		<![CDATA[o_date >= #{startDate}]]>
@@ -109,16 +112,18 @@ where rownum <![CDATA[<=]]> #{end_data}) where rnum <![CDATA[>=]]> #{start_data}
 	</if>
 </where>
 order by o_no desc)
+ttt inner join member_addr ttt2 on ttt.ma_no = ttt2.ma_no)
 	</select>
 	
 	<!-- 관리자 결제관리 페이지 -->
 	<select id="orderPaymentList" resultType="order" parameterType="order">
 		select * from
 (
-select rownum as rnum ,m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no from
+select rownum as rnum , replace(m_addr, '#!@@!#',' ') m_addr ,m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no from
 (
+select ttt.*, m_addr from (
 select * from(
-select f2.* from (select distinct o_num from (select t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'N') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no) 
+select f2.* from (select distinct o_num from (select ma_no,t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'N') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no) 
 <where>
 	<if test='m_id != ""'>
 		<![CDATA[and m_id like '%'||#{m_id}||'%']]>
@@ -130,17 +135,19 @@ select f2.* from (select distinct o_num from (select t1.m_no, m_id, m_name, o_nu
 		<![CDATA[and p_no like '%'||#{p_no}||'%']]>
 	</if>
 </where>
-order by o_no desc)) f1 inner join (select t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'N') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no)) f2 on f1.o_num = f2.o_num
+order by o_no desc)) f1 inner join (select ma_no,t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'N') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no)) f2 on f1.o_num = f2.o_num
 ) 
-order by o_num desc
+) ttt inner join member_addr ttt2 on ttt.ma_no = ttt2.ma_no order by o_num desc
 )
 where rownum <![CDATA[<=]]> #{end_data}) where rnum <![CDATA[>=]]> #{start_data}
 	</select>
 	
 	<!-- 관리자 결제관리 페이지 cnt -->
 	<select id="orderPaymentListCnt" resultType="java.lang.Integer" parameterType="order">
-	select nvl(count(*), 0) from(
-	select f2.* from (select distinct o_num from (select t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'N') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no) 
+	select nvl(count(*), 0) from
+	(select ttt.*, m_addr from
+	(
+	select f2.* from (select distinct o_num from (select ma_no, t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'N') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no) 
 <where>
 	<if test='m_id != ""'>
 		<![CDATA[and m_id like '%'||#{m_id}||'%']]>
@@ -152,8 +159,9 @@ where rownum <![CDATA[<=]]> #{end_data}) where rnum <![CDATA[>=]]> #{start_data}
 		<![CDATA[and p_no like '%'||#{p_no}||'%']]>
 	</if>
 </where>
-order by o_no desc)) f1 inner join (select t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'N') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no)) f2 on f1.o_num = f2.o_num
+order by o_no desc)) f1 inner join (select ma_no, t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'N') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no)) f2 on f1.o_num = f2.o_num
 	)
+	ttt inner join member_addr ttt2 on ttt.ma_no = ttt2.ma_no)
 	</select>
 	
 	<!-- 관리자 환불관리 페이지 -->
@@ -161,9 +169,10 @@ order by o_no desc)) f1 inner join (select t1.m_no, m_id, m_name, o_num, o_no, o
 		select * from
 (
 select rownum as rnum ,m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, o_date, p_no from
+(select ttt.*, m_addr from
 (
 select * from(
-select f2.* from (select distinct o_num from (select t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'R') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no) 
+select f2.* from (select distinct o_num from (select ma_no, t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'R') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no) 
 <where>
 	<if test='m_id != ""'>
 		<![CDATA[and m_id like '%'||#{m_id}||'%']]>
@@ -175,17 +184,19 @@ select f2.* from (select distinct o_num from (select t1.m_no, m_id, m_name, o_nu
 		<![CDATA[and p_no like '%'||#{p_no}||'%']]>
 	</if>
 </where>
-order by o_no desc)) f1 inner join (select t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'R') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no)) f2 on f1.o_num = f2.o_num
+order by o_no desc)) f1 inner join (select ma_no, t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'R') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no)) f2 on f1.o_num = f2.o_num
 ) 
-order by o_num desc
+) ttt inner join member_addr ttt2 on ttt.ma_no = ttt2.ma_no order by o_num desc
 )
 where rownum <![CDATA[<=]]> #{end_data}) where rnum <![CDATA[>=]]> #{start_data}
 	</select>
 	
 	<!-- 관리자 환불관리 페이지 cnt -->
 	<select id="orderRefundListCnt" resultType="java.lang.Integer" parameterType="order">
-	select nvl(count(*), 0) from(
-	select f2.* from (select distinct o_num from (select t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'R') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no) 
+	select nvl(count(*), 0) from
+	( select ttt.*, m_addr from
+	(
+	select f2.* from (select distinct o_num from (select ma_no, t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'R') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no) 
 <where>
 	<if test='m_id != ""'>
 		<![CDATA[and m_id like '%'||#{m_id}||'%']]>
@@ -197,8 +208,9 @@ where rownum <![CDATA[<=]]> #{end_data}) where rnum <![CDATA[>=]]> #{start_data}
 		<![CDATA[and p_no like '%'||#{p_no}||'%']]>
 	</if>
 </where>
-order by o_no desc)) f1 inner join (select t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'R') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no)) f2 on f1.o_num = f2.o_num
+order by o_no desc)) f1 inner join (select ma_no, t1.m_no, m_id, m_name, o_num, o_no, o_cnt, o_price, o_mode, o_confirm, to_char(o_date, 'yyyy-MM-dd hh24:mm:ss') o_date, p_no from (select * from product_order where o_confirm = 'R') t1 inner join (select * from member) t2 on (t1.m_no = t2.m_no)) f2 on f1.o_num = f2.o_num
 	)
+	ttt inner join member_addr ttt2 on ttt.ma_no = ttt2.ma_no)
 	</select>
 	
 	<!-- 결제완료 -->

@@ -32,10 +32,18 @@ public class Product_orderVO extends CommonPagingVO {
 	private String m_id = "";
 	private String m_name = "";
 	
+	private String m_addr = "";
+	
 	private String startDate = "";
 	private String endDate = "";
 	
-
+	
+	public String getM_addr() {
+		return m_addr;
+	}
+	public void setM_addr(String m_addr) {
+		this.m_addr = m_addr;
+	}
 	public String getAddrChk() {
 		return addrChk;
 	}
